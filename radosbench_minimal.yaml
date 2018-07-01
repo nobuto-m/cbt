@@ -1,0 +1,25 @@
+cluster:
+  use_existing: True
+
+  user: ubuntu
+  head: 'juju-678cfb-0.lxd'
+  clients: ['juju-678cfb-0.lxd']
+  osds_per_node: 1
+
+  iterations: 1
+  tmp_dir: '/tmp/cbt'
+
+  pool_profiles:
+    radosbench:
+      pg_size: 128
+      pgp_size: 128
+      replication: 3
+
+benchmarks:
+  radosbench:
+    op_size: [4096, 131072, 4194304]
+    write_only: False
+    time: 10
+    concurrent_ops: [32]
+    concurrent_procs: 2
+    pool_profile: 'radosbench'
